@@ -1,3 +1,6 @@
+
+// RESUELTO CON CHATGPT PRACTICAMENTE
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,22 +10,45 @@ typedef struct charstring
     char *cadena;
 } charstring;
 
-int cantidad(charstring *frase)
-{
-    int count = 0;
-    char buscar = frase->c;
-    char *cadena = frase->cadena;
+int cantidad(charstring *);
 
-    while (*cadena != '\0')
+int *ocurrencias(charstring *, int);
+
+int main()
+{
+    charstring frase;
+    char buffer[100];
+
+    printf("Ingrese una frase: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    buffer[strcspn(buffer, "\n")] = '\0'; // Eliminar el carácter de nueva línea
+
+    printf("Ingrese una letra: ");
+    fgets(buffer, sizeof(buffer), stdin);
+    sscanf(buffer, "%c", &frase.c);
+
+    frase.cadena = buffer;
+    int count = cantidad(&frase);
+    int *positions = ocurrencias(&frase, count);
+
+    printf("La letra '%c' aparece %d veces en la frase.\n", frase.c, count);
+
+    if (count > 0)
     {
-        if (*cadena == buscar)
+        printf("La letra '%c' se encuentra en las posiciones: ", frase.c);
+        for (int i = 0; i < count; i++)
         {
-            count++;
+            printf("%d", positions[i]);
+            if (i < count - 1)
+            {
+                printf(", ");
+            }
         }
-        cadena++;
+        printf("\n");
+        free(positions);
     }
 
-    return count;
+    return 0;
 }
 
 int *ocurrencias(charstring *frase, int cantidad)
@@ -51,40 +77,20 @@ int *ocurrencias(charstring *frase, int cantidad)
 
     return posiciones;
 }
-
-int main()
+int cantidad(charstring *frase)
 {
-    charstring frase;
-    char buffer[100];
+    int count = 0;
+    char buscar = frase->c;
+    char *cadena = frase->cadena;
 
-    printf("Ingrese una frase: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    buffer[strcspn(buffer, "\n")] = '\0'; // Eliminar el carácter de nueva línea
-
-    printf("Ingrese una letra: ");
-    fgets(buffer, sizeof(buffer), stdin);
-    sscanf(buffer, "%c", &frase.c);
-
-    frase.cadena = buffer;
-    int count = cantidad(&frase);
-    int *positions = ocurrencias(&frase, count);
-
-    printf("La letra '%c' aparece %d veces en la frase.\n", frase.c, count);
-
-    if (count > 0)
+    while (*cadena != '\0')
     {
-        printf("Posiciones de la letra '%c' en la frase: ", frase.c);
-        for (int i = 0; i < count; i++)
+        if (*cadena == buscar)
         {
-            printf("%d", positions[i]);
-            if (i < count - 1)
-            {
-                printf(", ");
-            }
+            count++;
         }
-        printf("\n");
-        free(positions);
+        cadena++;
     }
 
-    return 0;
+    return count;
 }

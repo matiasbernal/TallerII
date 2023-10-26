@@ -14,7 +14,7 @@ int main()
 
     printf("\n");
 
-    printf("Palabra con mayusculas y minusculas cambiadas: ");
+    printf("Palabra modificada: ");
     cambiar_mayus_minus(palabra);
 
     return 0;

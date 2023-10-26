@@ -19,7 +19,7 @@ void testEsPalindromo()
     printf("Ingrese una palabra: ");
     fgets(palabra, sizeof(palabra), stdin); // lee una linea de texto
 
-    printf("La palabra \"%s\"", palabra); // Imprime la palabra
+    printf("La palabra: %s\n", palabra); // Imprime la palabra
 
     // Si es palindromo, imprime "es palindromo", sino, imprime "no es palindromo"
     if (esPalindromo(palabra) == 1)
@@ -38,7 +38,7 @@ int esPalindromo(char palabra[100])
     int j = (strlen(palabra) - 2);
     int esPalindromo = 1;
 
-    // Ciclo para recorrer la palabra y convertir a minusculas
+    // Ciclo para convertir a minuscula la palabra
     for (int i = 0; i < strlen(palabra); i++)
     {
         palabra[i] = tolower(palabra[i]);
@@ -46,7 +46,6 @@ int esPalindromo(char palabra[100])
 
     // Ciclo para recorrer la palabra
     while (i < j)
-
     {
         // Verifica si la letra en la posicion i es diferente a la letra en la posicion j
         if (palabra[i] != palabra[j])
@@ -59,14 +58,4 @@ int esPalindromo(char palabra[100])
     }
 
     return esPalindromo; // Retorna 1 si es palindromo, 0 si no lo es
-}
-#include<stdio.h>
-int main(void)
-{
-    char cadenal[10];
-, cadenal);
-printf("%s", cadenal);
-char *cadena2 = " Hola";
-printf("%s" * cadena2);
-return 0;
 }

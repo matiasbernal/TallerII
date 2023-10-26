@@ -10,14 +10,17 @@ int main()
 {
     char palabra[100];
 
+    printf("Introduce una palabra u oracion: ");
     fgets(palabra, sizeof(palabra), stdin); // lee una linea de texto
 
-    printf("numero de caracteres: %d \n", strlen(palabra));
+    int letras = strlen(palabra); // Cuenta la cantidad de letras
+    printf("numero de caracteres: %d \n", letras);
 
     printf("Palabra al reves: ");
-    for (int i = strlen(palabra) - 1; i >= 0; i--)
+    // Ciclo para invertir los caracteres
+    for (int i = letras; i > 0; i--)
     {
-        printf("%c", palabra[i]);
+        printf("%c", palabra[i - 1]); // Imprime los caracteres invertidos
     }
 
     return 0;
